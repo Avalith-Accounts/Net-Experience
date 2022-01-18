@@ -4,4 +4,11 @@
     <TargetFramework>netstandard2.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="MongoDb\Command\" />
+    <Folder Include="MongoDb\Query\" />
+    <Folder Include="Sql\Command\" />
+    <Folder Include="Sql\Query\" />
+  </ItemGroup>
+
 </Project>
