@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.2.0" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.14" />
   </ItemGroup>
 
@@ -15,6 +16,11 @@
     <Folder Include="Responses\" />
     <Folder Include="Request\" />
     <Folder Include="UseCases\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Application\Net.Experience.Application.csproj" />
+    <ProjectReference Include="..\Configuration\Net.Experience.Configuration.csproj" />
   </ItemGroup>
 
 </Project>

@@ -18,6 +18,7 @@
     <Folder Include="MongoDb\Command\" />
     <Folder Include="MongoDb\Query\" />
     <Folder Include="Sql\Command\" />
+    <Folder Include="Sql\Configuration\Seed\" />
     <Folder Include="Sql\Query\" />
   </ItemGroup>
 
