@@ -2,7 +2,7 @@
 
 namespace Net.Experience.Configuration
 {
-    public class Class1
+    public class ServiceConfiguration
     {
     }
 }

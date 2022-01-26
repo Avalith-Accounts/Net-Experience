@@ -16,6 +16,7 @@ namespace Net_Experience
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            Cors(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -26,6 +27,8 @@ namespace Net_Experience
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors("allowSpecificOrigins");
+
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
@@ -33,6 +36,20 @@ namespace Net_Experience
                 endpoints.MapGet("/", async context =>
                 {
                     await context.Response.WriteAsync("Net-Experience");
+                });
+            });
+        }
+
+        private static void Cors(IServiceCollection services)
+        {
+            services.AddCors(options =>
+            {
+                options.AddPolicy("allowSpecificOrigins",
+                builder =>
+                {
+                    builder.WithOrigins("http://localhost:4200")
+                            .AllowAnyHeader()
+                            .AllowAnyMethod();
                 });
             });
         }
