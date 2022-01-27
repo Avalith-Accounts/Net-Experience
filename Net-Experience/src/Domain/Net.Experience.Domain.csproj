@@ -6,7 +6,10 @@
 
   <ItemGroup>
     <Folder Include="Entities\" />
-    <Folder Include="Interfaces\" />
+    <Folder Include="Interfaces\Command\" />
+    <Folder Include="Interfaces\Repository\" />
+    <Folder Include="Dtos\" />
+    <Folder Include="Enums\" />
   </ItemGroup>
 
 </Project>
