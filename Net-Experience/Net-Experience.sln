@@ -23,7 +23,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Net.Experience.Common.Helpe
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{BD7BB95C-0A29-4805-96F9-26E0BF1B0D47}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Net.Experience.Test", "src\Test\Net.Experience.Test.csproj", "{0E8D72EB-45F6-413B-9143-9B96F6C3B9D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Net.Experience.Test", "src\Test\Net.Experience.Test.csproj", "{0E8D72EB-45F6-413B-9143-9B96F6C3B9D9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

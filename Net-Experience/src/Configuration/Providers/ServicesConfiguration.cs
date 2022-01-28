@@ -1,10 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Net.Experience.Application.Interfaces.Services;
+using Net.Experience.Application.Services;
 
 namespace Net.Experience.Configuration.Providers
 {
-    class ServicesConfiguration
+    public static class ServiceConfiguration
     {
+        public static IServiceCollection AddServiceConfiguration(this IServiceCollection services)
+        {
+            services.AddScoped<IItemService, ItemService>();
+
+            return services;
+        }
     }
 }

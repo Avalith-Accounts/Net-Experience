@@ -4,7 +4,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Net.Experience.Configuration.Providers;
 using Net.Experience.Persistance.Sql;
-using System;
 
 namespace Net.Experience.Configuration
 {
@@ -14,6 +13,9 @@ namespace Net.Experience.Configuration
         {
             //INFRASTRUCTURE
             services.ConfigurePersistenceServices(configuration);
+
+            services.AddPersonConfiguration();
+            services.AddServiceConfiguration();
 
             return services;
         }
