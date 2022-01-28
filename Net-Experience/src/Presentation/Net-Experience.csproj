@@ -9,6 +9,10 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.13">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.14" />
   </ItemGroup>
 
@@ -21,6 +25,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Application\Net.Experience.Application.csproj" />
     <ProjectReference Include="..\Configuration\Net.Experience.Configuration.csproj" />
+    <ProjectReference Include="..\Persistance\Net.Experience.Persistance.csproj" />
   </ItemGroup>
 
 </Project>

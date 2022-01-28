@@ -94,4 +94,8 @@
     <Content Remove="C:\Users\Avalith\.nuget\packages\mongodb.driver.core\2.14.1\build\..\runtimes\win\native\libzstd.dll" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\Net.Experience.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
