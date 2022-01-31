@@ -1,5 +1,6 @@
 ﻿using Net.Experience.Domain.Interfaces.Command;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Net.Experience.Persistance.Sql.Command
 {
@@ -10,28 +11,40 @@ namespace Net.Experience.Persistance.Sql.Command
         {
             _context = context;
         }
-        public void Add(T entity)
+        public async Task<T> Add(T entity)
         {
-            _context.Set<T>().Add(entity);
+            var result = await _context.Set<T>().AddAsync(entity);
+            Complete();
+
+            return result.Entity;
         }
 
-        public void AddRange(IEnumerable<T> entities)
+        public async Task AddRange(IEnumerable<T> entities)
         {
-            _context.Set<T>().AddRange(entities);
+           await  _context.Set<T>().AddRangeAsync(entities);
+           Complete();
         }
 
         public void Remove(T entity)
         {
-            _context.Set<T>().Remove(entity);
+             _context.Set<T>().Remove(entity);
+            Complete();
         }
         public void RemoveRange(IEnumerable<T> entities)
         {
             _context.Set<T>().RemoveRange(entities);
+            Complete();
         }
 
         public void Update(T entity) 
         {
             _context.Set<T>().Update(entity);
+            Complete();
+        }
+
+        public int Complete()
+        {
+            return _context.SaveChanges();
         }
     }
 }

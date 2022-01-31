@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 namespace Net.Experience.Persistance.Sql.Query
 {
@@ -21,9 +22,9 @@ namespace Net.Experience.Persistance.Sql.Query
         {
             return _context.Set<T>().ToList();
         }
-        public T GetById(int id)
+        public async Task<T> GetById(Guid id)
         {
-            return _context.Set<T>().Find(id);
+            return await _context.Set<T>().FindAsync(id);
         }
     }
 }

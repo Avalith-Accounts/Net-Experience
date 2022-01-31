@@ -23,7 +23,8 @@ namespace Net_Experience
         public void ConfigureServices(IServiceCollection services)
         {
             services.ConfigureServices(configuration);
-            Cors(services);
+            //Cors(services);
+            services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -31,16 +32,13 @@ namespace Net_Experience
         {
             app.Configure(configuration);
 
-            app.UseCors("allowSpecificOrigins");
+            //app.UseCors("allowSpecificOrigins");
 
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Net-Experience");
-                });
+                endpoints.MapControllers();
             });
         }
 

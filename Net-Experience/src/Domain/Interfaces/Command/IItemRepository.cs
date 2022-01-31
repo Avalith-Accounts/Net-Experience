@@ -1,6 +1,8 @@
-﻿namespace Net.Experience.Domain.Interfaces.Command
+﻿using Net.Experience.Domain.Entities;
+
+namespace Net.Experience.Domain.Interfaces.Command
 {
-    public interface IItemRepository
+    public interface IItemRepository : IBaseRepository<Item>
     {
     }
 }

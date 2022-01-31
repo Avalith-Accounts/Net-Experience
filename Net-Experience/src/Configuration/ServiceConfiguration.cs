@@ -16,6 +16,7 @@ namespace Net.Experience.Configuration
 
             services.AddPersonConfiguration();
             services.AddServiceConfiguration();
+            services.AddMediatorConfiguration();
 
             return services;
         }

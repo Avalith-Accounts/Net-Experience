@@ -1,8 +1,12 @@
-﻿using Net.Experience.Domain.Interfaces.Command;
+﻿using Net.Experience.Domain.Entities;
+using Net.Experience.Domain.Interfaces.Command;
 
 namespace Net.Experience.Persistance.Sql.Command
 {
-    public class ItermRepository : IItemRepository
+    public class ItermRepository : BaseRepository<Item>, IItemRepository
     {
+        public ItermRepository(NetExperienceDbContext context) : base(context)
+        {
+        }
     }
 }
