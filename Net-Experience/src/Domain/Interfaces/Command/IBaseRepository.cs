@@ -7,8 +7,8 @@ namespace Net.Experience.Domain.Interfaces.Command
     {
         Task<T> Add(T entity);
         Task AddRange(IEnumerable<T> entities);
-        void Remove(T entity);
-        void RemoveRange(IEnumerable<T> entities);
-        void Update(T entity);
+        Task Remove(T entity);
+        Task RemoveRange(IEnumerable<T> entities);
+        Task Update(T entity);
     }
 }

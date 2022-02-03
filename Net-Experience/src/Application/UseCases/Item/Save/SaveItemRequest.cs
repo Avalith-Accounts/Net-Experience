@@ -6,12 +6,7 @@ namespace Net.Experience.Application.UseCases.Item.Save
 {
     public class SaveItemRequest : IRequest<SaveItemResult>
     {
-        [Required]
-        [MaxLength(10)]
         public string Title { get; set; }
-
-        [Required]
-        [MaxLength(50)]
         public string Description { get; set; }
 
         public ItemDto ToItemDto() 

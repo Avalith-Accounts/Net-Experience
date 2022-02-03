@@ -1,5 +1,6 @@
 ﻿using Net.Experience.Application.Interfaces.Services;
 using Net.Experience.Domain.Dtos;
+using Net.Experience.Domain.Entities;
 using Net.Experience.Domain.Interfaces.Command;
 using Net.Experience.Domain.Interfaces.Query;
 using System;
@@ -31,6 +32,19 @@ namespace Net.Experience.Application.Services
 
             ItemDto itemDto = new ItemDto(item.Id, item.Title, item.Despription);
 
+            return itemDto;
+        }
+
+        public async Task<ItemDto> UpdateItemAsync(ItemDto itemDto)
+        {
+            Item item = new Item();
+
+            item.Id = itemDto.Id;
+            item.Title = itemDto.Title;
+            item.Despription = item.Despription;
+
+            await _itemRepository.Update(item);
+            
             return itemDto;
         }
     }

@@ -14,7 +14,7 @@ namespace Net.Experience.Persistance.Sql.Command
         public async Task<T> Add(T entity)
         {
             var result = await _context.Set<T>().AddAsync(entity);
-            Complete();
+            await Complete();
 
             return result.Entity;
         }
@@ -22,29 +22,29 @@ namespace Net.Experience.Persistance.Sql.Command
         public async Task AddRange(IEnumerable<T> entities)
         {
            await  _context.Set<T>().AddRangeAsync(entities);
-           Complete();
+            await Complete();
         }
 
-        public void Remove(T entity)
+        public async Task Remove(T entity)
         {
              _context.Set<T>().Remove(entity);
-            Complete();
+             await Complete();
         }
-        public void RemoveRange(IEnumerable<T> entities)
+        public async Task RemoveRange(IEnumerable<T> entities)
         {
             _context.Set<T>().RemoveRange(entities);
-            Complete();
+            await Complete();
         }
 
-        public void Update(T entity) 
+        public async Task Update(T entity) 
         {
             _context.Set<T>().Update(entity);
-            Complete();
+            await Complete();
         }
 
-        public int Complete()
+        public async Task<int> Complete()
         {
-            return _context.SaveChanges();
+            return await _context.SaveChangesAsync();
         }
     }
 }

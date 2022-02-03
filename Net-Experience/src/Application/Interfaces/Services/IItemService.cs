@@ -8,5 +8,6 @@ namespace Net.Experience.Application.Interfaces.Services
     {
         Task<ItemDto> SaveItemAsync(ItemDto itemDto);
         Task<ItemDto> GetItemAsync(Guid itemId);
+        Task<ItemDto> UpdateItemAsync(ItemDto itemDto);
     }
 }
