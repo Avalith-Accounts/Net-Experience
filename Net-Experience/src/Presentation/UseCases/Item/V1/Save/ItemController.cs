@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Net_Experience.Request.Item;
-using Net_Experience.Responses.Item;
+using Net.Experience.Application.UseCases.Item.Save;
 using System.Threading.Tasks;
+using SaveItemRequest = Net_Experience.Request.Item.SaveItemRequest;
 
 namespace Net_Experience.UseCases.Item.V1
 {
@@ -10,7 +10,7 @@ namespace Net_Experience.UseCases.Item.V1
     {
         [HttpPost]
         [Route("")]
-        [ProducesResponseType(typeof(ItemResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(SaveItemResult), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> saveItemAsync(SaveItemRequest itemRequest)
         {

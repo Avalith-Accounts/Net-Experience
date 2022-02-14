@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Net_Experience.Request.Item;
-using Net_Experience.Responses.Item;
+using Net.Experience.Application.UseCases.Item.Update;
 using System;
 using System.Threading.Tasks;
+using UpdateItemRequest = Net_Experience.Request.Item.UpdateItemRequest;
 
 namespace Net_Experience.UseCases.Item.V1
 {
@@ -11,7 +11,7 @@ namespace Net_Experience.UseCases.Item.V1
     {
         [HttpPut]
         [Route("{itemId}")]
-        [ProducesResponseType(typeof(ItemResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(UpdateItemResult), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> updateItemAsync(UpdateItemRequest itemRequest, Guid itemId)
         {
