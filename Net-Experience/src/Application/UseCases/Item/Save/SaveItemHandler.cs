@@ -1,11 +1,12 @@
 ﻿using MediatR;
 using Net.Experience.Application.Interfaces.Services;
+using Net.Experience.Common.Helpers;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace Net.Experience.Application.UseCases.Item.Save
 {
-    public class SaveItemHandler : IRequestHandler<SaveItemRequest, SaveItemResult>
+    public class SaveItemHandler : IRequestHandler<SaveItemRequest, Response<SaveItemResult>>
     {
         private readonly IItemService _itemService;
 
@@ -13,13 +14,13 @@ namespace Net.Experience.Application.UseCases.Item.Save
         {
             _itemService = itemService;
         }
-        public async Task<SaveItemResult> Handle(SaveItemRequest request, CancellationToken cancellationToken)
+        public async Task<Response<SaveItemResult>> Handle(SaveItemRequest request, CancellationToken cancellationToken)
         {
            var item = await _itemService.SaveItemAsync(request.ToItemDto());
 
             var itemResult = new SaveItemResult(item);
 
-            return itemResult;
+            return new Response<SaveItemResult>(itemResult);
         }
     }
 }

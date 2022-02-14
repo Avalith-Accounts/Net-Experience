@@ -18,7 +18,7 @@ namespace Net_Experience.UseCases.Item.V1
             itemRequest.Id = itemId;
 
             var response = await _mediator.Send(itemRequest.ToUpdateItemRequest());
-            return Ok(new ItemResponse(response.Id, response.Title, response.Description));
+            return Ok(response);
         }
     }
 }

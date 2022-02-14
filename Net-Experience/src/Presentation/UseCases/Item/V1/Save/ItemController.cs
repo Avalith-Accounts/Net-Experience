@@ -15,7 +15,8 @@ namespace Net_Experience.UseCases.Item.V1
         public async Task<IActionResult> saveItemAsync(SaveItemRequest itemRequest)
         {
             var response = await _mediator.Send(itemRequest.ToSaveItemRequest());
-            return Ok(new ItemResponse(response.Id,response.Title,response.Description));
+            
+            return Ok(response);
         }
     }
 }

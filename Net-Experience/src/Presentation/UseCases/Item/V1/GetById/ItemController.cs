@@ -16,7 +16,7 @@ namespace Net_Experience.UseCases.Item.V1
         public async Task<IActionResult> GetItemAsync(Guid itemId)
         {
             var response = await _mediator.Send(new GetItemRequest(itemId));
-            return Ok(new ItemResponse(response.Id,response.Title,response.Description));
+            return Ok(response);
         }
     }
 }

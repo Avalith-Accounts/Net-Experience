@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Domain\Net.Experience.Domain.csproj" />
+    <ProjectReference Include="..\Helpers\Net.Experience.Common.Helpers.csproj" />
   </ItemGroup>
 
 </Project>

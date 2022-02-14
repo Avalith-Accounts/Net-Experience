@@ -1,11 +1,12 @@
 ﻿using MediatR;
 using Net.Experience.Application.Interfaces.Services;
+using Net.Experience.Common.Helpers;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace Net.Experience.Application.UseCases.Item.Update
 {
-    public class UpdateItemHandler : IRequestHandler<UpdateItemRequest, UpdateItemResult>
+    public class UpdateItemHandler : IRequestHandler<UpdateItemRequest, Response<UpdateItemResult>>
     {
         private readonly IItemService _itemService;
 
@@ -13,13 +14,13 @@ namespace Net.Experience.Application.UseCases.Item.Update
         {
             _itemService = itemService;
         }
-        public async Task<UpdateItemResult> Handle(UpdateItemRequest request, CancellationToken cancellationToken)
+        public async Task<Response<UpdateItemResult>> Handle(UpdateItemRequest request, CancellationToken cancellationToken)
         {
             var item = await _itemService.UpdateItemAsync(request.ToItemDto());
 
             var itemResult = new UpdateItemResult(item);
 
-            return itemResult;
+            return new Response<UpdateItemResult>(itemResult);
         }
     }
 }
