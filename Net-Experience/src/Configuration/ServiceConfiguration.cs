@@ -32,7 +32,7 @@ namespace Net.Experience.Configuration
             {
                 using var context = serviceScope.ServiceProvider.GetService<NetExperienceDbContext>();
                 context.Database.Migrate();
-            }
+            }        
         }
     }
 }

@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Net.Experience.Configuration;
+using Net_Experience.Middleware;
 
 namespace Net_Experience
 {
@@ -30,7 +31,7 @@ namespace Net_Experience
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.Configure(configuration);
-
+            app.UseMiddleware<ErrorHandlerMiddleware>();
             //app.UseCors("allowSpecificOrigins");
 
             app.UseRouting();

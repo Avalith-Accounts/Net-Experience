@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Net.Experience.Application.Exceptions;
 using Net.Experience.Application.Interfaces.Services;
 using Net.Experience.Common.Helpers;
 using System.Threading;
@@ -17,6 +18,11 @@ namespace Net.Experience.Application.UseCases.Item.GetById
         public async Task<Response<GetItemResult>> Handle(GetItemRequest request, CancellationToken cancellationToken)
         {
             var item = await _itemService.GetItemAsync(request.Id);
+
+            if (item is null)
+            {
+                throw new NotFoundException(MessageGeneral.NotFound, MessageGeneral.DontExist);
+            }
 
             var itemResult = new GetItemResult(item);
 

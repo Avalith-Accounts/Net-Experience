@@ -28,9 +28,13 @@ namespace Net.Experience.Application.Services
         }
         public async Task<ItemDto> GetItemAsync(Guid itemId)
         {
-           var item = await _itemQuery.GetById(itemId);
+            ItemDto itemDto = null;
+            var item = await _itemQuery.GetById(itemId);
 
-            ItemDto itemDto = new ItemDto(item.Id, item.Title, item.Despription);
+            if(item != null) 
+            {
+                itemDto = new ItemDto(item.Id, item.Title, item.Despription);
+            }
 
             return itemDto;
         }
