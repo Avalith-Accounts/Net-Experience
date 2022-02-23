@@ -41,6 +41,7 @@ namespace Net.Experience.Configuration
                 x.SwaggerEndpoint(url: "/swagger/v1/swagger.json", name: "Net Experience Api V1");
             });
 
+            app.UseAuthentication();
         }
     }
 }
