@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Net.Experience.Persistance.Sql;
@@ -12,6 +13,10 @@ namespace Net.Experience.Configuration.Providers
 
           services.AddDbContext<NetExperienceDbContext>(options =>
                                     options.UseSqlServer(configuration.GetConnectionString("SqlConnection")));
+
+          services.AddIdentity<IdentityUser, IdentityRole>()
+                  .AddEntityFrameworkStores<NetExperienceDbContext>()
+                  .AddDefaultTokenProviders();
 
             return services;
         }

@@ -17,6 +17,7 @@ namespace Net.Experience.Configuration
             services.AddPersonConfiguration();
             services.AddServiceConfiguration();
             services.AddMediatorConfiguration();
+            services.AddSwaggerConfiguration();
 
             return services;
         }
@@ -32,7 +33,15 @@ namespace Net.Experience.Configuration
             {
                 using var context = serviceScope.ServiceProvider.GetService<NetExperienceDbContext>();
                 context.Database.Migrate();
-            }        
+            }
+
+            app.UseSwagger();
+            app.UseSwaggerUI(x =>
+            {
+                x.SwaggerEndpoint(url: "/swagger/v1/swagger.json", name: "Net Experience Api V1");
+            });
+
+            app.UseAuthentication();
         }
     }
 }
