@@ -1,10 +1,11 @@
 ﻿using System;
-using System.Globalization;
+using System.Collections.Generic;
 
 namespace Net.Experience.Application.Exceptions
 {
     public class BusinessRulesException : Exception
     {
+        public IEnumerable<string> ErrorMessage { get; set; }
         public BusinessRulesException() : base()
         {
         }
@@ -13,8 +14,9 @@ namespace Net.Experience.Application.Exceptions
         {
         }
 
-        public BusinessRulesException(string message, params object [] args) : base(String.Format(CultureInfo.CurrentCulture, message,args))
+        public BusinessRulesException(string message, IEnumerable<string> errorMessage) : base(message)
         {
+            ErrorMessage = errorMessage;
         }
     }
 }

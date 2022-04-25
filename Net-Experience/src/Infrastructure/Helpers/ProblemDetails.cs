@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Net.Experience.Common.Helpers
+﻿namespace Net.Experience.Common.Helpers
 {
     public class ProblemDetails
     {
