@@ -3,6 +3,7 @@ using Net.Experience.Application.Exceptions;
 using Net.Experience.Common.Helpers;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -36,6 +37,7 @@ namespace Net_Experience.Middleware
                     case BusinessRulesException e:
                         response.StatusCode = (int)HttpStatusCode.BadRequest;
                         responseModel.Status  = HttpStatusCode.BadRequest;
+                        responseModel.Error = e.ErrorMessage.Select(x => new ProblemDetails(x)).ToList();
                         break;
                     case NotFoundException e:
                         response.StatusCode = (int)HttpStatusCode.NotFound;
