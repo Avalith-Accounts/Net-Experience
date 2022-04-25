@@ -1,22 +1,26 @@
-#See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
-
-FROM mcr.microsoft.com/dotnet/aspnet:3.1 AS base
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
 WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
-FROM mcr.microsoft.com/dotnet/sdk:3.1 AS build
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["Net-Experience/Net-Experience.csproj", "Net-Experience/"]
-RUN dotnet restore "Net-Experience/Net-Experience.csproj"
+COPY ["Net-Experience.csproj", "Presentation/Api/Net-Experience.csproj"]
+COPY ["../../../Infrastructure/Persistence/Net.Experience.Persistence.csproj","Infrastructure/Persistence/Net.Experience.Persistence.csproj"]
+COPY ["../../../Infrastructure/Configuration/Net.Experience.Configuration.csproj","Infrastructure/Configuration/Net.Experience.Configuration.csproj"]
+COPY ["../../../Infrastructure/Helpers/Net.Experience.Common.Helpers.csproj","Infrastructure/Helpers/Net.Experience.Common.Helpers.csproj"]
+COPY ["../../../Core/Application/Net.Experience.Application.csproj","Core/Application/Net.Experience.Application.csproj"]
+COPY ["../../../Core/Domain/Net.Experience.Domain.csproj","Core/Domain/Net.Experience.Domain.csproj"]
+
+RUN dotnet restore "/src/Presentation/Api/Net-Experience.csproj"
 COPY . .
-WORKDIR "/src/Net-Experience"
-RUN dotnet build "Net-Experience.csproj" -c Release -o /app/build
+WORKDIR "/src/Presentation/Api"
+RUN dotnet build "/src/Presentation/Api/Net-Experience.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "Net-Experience.csproj" -c Release -o /app/publish
+RUN dotnet publish "/src/Presentation/Api/Net-Experience.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "Net-Experience.dll"]
+ENTRYPOINT ["dotnet", "/app/publish/Net-Experience.dll"]

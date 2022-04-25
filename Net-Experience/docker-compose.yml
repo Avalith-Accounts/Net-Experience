@@ -1,0 +1,53 @@
+version: "3.4"
+services:
+  mssql:
+    container_name: "sql"
+    image: mcr.microsoft.com/mssql/server
+    ports:
+      - "1433:1433"
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Password@123
+      - MSSQL_PID=Developer
+
+  zookeeper:
+    container_name: zookeeper-local
+    image: confluentinc/cp-zookeeper:latest
+    environment:
+      - ZOOKEEPER_CLIENT_PORT=2181
+      - ZOOKEEPER_TICK_TIME=2000
+    ports:
+      - "2182:2182"
+
+  kafka:
+    container_name: kafka
+    depends_on:
+      - zookeeper
+    ports:
+      - "9093:9093"
+    image: confluentinc/cp-kafka:latest
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,PLAINTEXT_HOST://localhost:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_NUM_PARTITIONS: 3
+      CONFLUENT_SUPPORT_METRICS_ENABLE: 0
+  
+  webapi:
+    container_name: webapi
+    ports:
+        - 8080:80
+        - 8081:443
+    environment:
+        - ASPNETCORE_ENVIRONMENT=Development     
+    build:
+        context: .
+        dockerfile: ./src/Presentation/Api/Dockerfile
+    restart: on-failure        
+    depends_on:
+        - mssql
+    links:
+        - mssql
