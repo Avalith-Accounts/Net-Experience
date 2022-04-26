@@ -10,11 +10,13 @@ namespace Net.Experience.Configuration.Providers
     {
         public static IServiceCollection AddPersonConfiguration(this IServiceCollection services)
         {
-            // SERVICE
+            // Repositories
             services.AddScoped<IItemRepository, ItermRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
 
             // Query
             services.AddScoped<IItemQuery, ItemQuery>();
+            services.AddScoped<IUserQuery, UserQuery>();
 
             return services;
         }
