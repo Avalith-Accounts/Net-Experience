@@ -27,9 +27,10 @@ namespace Net.Experience.Persistance.Sql.Command
 
         public async Task Remove(T entity)
         {
-             _context.Set<T>().Remove(entity);
-             await Complete();
+            _context.Set<T>().Remove(entity);
+            await Complete();
         }
+
         public async Task RemoveRange(IEnumerable<T> entities)
         {
             _context.Set<T>().RemoveRange(entities);

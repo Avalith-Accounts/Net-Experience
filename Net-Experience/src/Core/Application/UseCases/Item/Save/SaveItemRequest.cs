@@ -1,7 +1,6 @@
 ﻿using MediatR;
 using Net.Experience.Common.Helpers;
 using Net.Experience.Domain.Dtos;
-using System.ComponentModel.DataAnnotations;
 
 namespace Net.Experience.Application.UseCases.Item.Save
 {
