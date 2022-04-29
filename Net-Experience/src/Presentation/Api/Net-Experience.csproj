@@ -5,6 +5,8 @@
     <RootNamespace>Net_Experience</RootNamespace>
     <UserSecretsId>cb57b15d-08bd-498c-932e-46859e55cf95</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerComposeProjectPath>..\..\..\docker-compose.dcproj</DockerComposeProjectPath>
+    <DockerfileContext>..\..\..</DockerfileContext>
   </PropertyGroup>
 
   <ItemGroup>
