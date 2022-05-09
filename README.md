@@ -11,3 +11,11 @@
   **Structure Project**
   
   ![image](https://user-images.githubusercontent.com/97917509/165157229-7049a662-2d1e-479e-8881-de40208cf1b2.png)
+  
+  
+  **Swagger**
+  
+   The boilerplate uses [**Swagger**](https://swagger.io/tools/swagger-editor/) for endpoint documentation
+   
+   ![image](https://user-images.githubusercontent.com/97917509/165301339-08f4a222-ac2b-40b6-8fc7-d83487ffea38.png)
+

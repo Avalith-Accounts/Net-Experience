@@ -4,22 +4,25 @@ using Net.Experience.Domain.Interfaces.Services;
 using Net.Experience.Common.Helpers;
 using System.Threading;
 using System.Threading.Tasks;
+using AutoMapper;
+using Net.Experience.Domain.Dtos;
 
 namespace Net.Experience.Application.UseCases.Item.Update
 {
     public class UpdateItemHandler : IRequestHandler<UpdateItemRequest, Response<UpdateItemResult>>
     {
         private readonly IItemService _itemService;
-
-        public UpdateItemHandler(IItemService itemService)
+        private readonly IMapper _mapper;
+        public UpdateItemHandler(IItemService itemService, IMapper mapper)
         {
             _itemService = itemService;
+            _mapper = mapper;
         }
         public async Task<Response<UpdateItemResult>> Handle(UpdateItemRequest request, CancellationToken cancellationToken)
         {
             await ValidateExistItemAsync(request);
 
-            var item = await _itemService.UpdateItemAsync(request.ToItemDto());
+            var item = await _itemService.UpdateItemAsync(_mapper.Map<ItemDto>(request));
 
             var itemResult = new UpdateItemResult(item);
 

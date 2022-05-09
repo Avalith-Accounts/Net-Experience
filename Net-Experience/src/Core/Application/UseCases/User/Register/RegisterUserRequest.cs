@@ -13,19 +13,5 @@ namespace Net.Experience.Application.UseCases.User.Register
         public string PhoneNumber { get; set; }
         public string Password { get; set; }
         public string IdentificationDocument { get; set; }
-
-        public UserDto ToUserDto()
-        {
-            return new UserDto()
-            {
-                FirstName = this.FirstName,
-                LastName = this.LastName,
-                UserName = this.UserName,
-                Email = this.Email,
-                PhoneNumber = this.PhoneNumber,
-                Password = this.Password,
-                IdentificationDocument = this.IdentificationDocument
-            };
-        }
     }
 }
