@@ -13,18 +13,5 @@ namespace Net.Experience.Application.UseCases.User.UpdateUser
         public string UserName { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
-
-        public UserDto ToUserDto()
-        {
-            return new UserDto()
-            {
-                Id = this.Id.ToString(),
-                FirstName = this.FirstName,
-                LastName = this.LastName,
-                UserName = this.UserName,
-                Email = this.Email,
-                PhoneNumber = this.PhoneNumber
-            };
-        }
     }
 }
