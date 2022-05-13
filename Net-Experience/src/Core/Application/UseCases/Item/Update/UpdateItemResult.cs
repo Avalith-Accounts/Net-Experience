@@ -9,7 +9,7 @@ namespace Net.Experience.Application.UseCases.Item.Update
         public string Title { get; set; }
         public string Description { get; set; }
 
-        public UpdateItemResult(ItemDto itemDto)
+        public UpdateItemResult(Domain.Entities.Item itemDto)
         {
             Id = itemDto.Id;
             Title = itemDto.Title;

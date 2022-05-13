@@ -21,7 +21,7 @@ namespace Net.Experience.Domain.Dtos
         {
             return new Item()
             {
-                Despription = this.Description,
+                Description = this.Description,
                 Title = this.Title
             };
         }

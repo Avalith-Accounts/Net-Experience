@@ -10,13 +10,13 @@ namespace Net.Experience.Application.UseCases.User.UpdateUser
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
 
-        public UpdateUserResult(UserDto userDto) 
+        public UpdateUserResult(Domain.Entities.User user) 
         {
-            FirstName = userDto.FirstName;
-            LastName = userDto.LastName;
-            UserName = userDto.UserName;
-            Email = userDto.Email;
-            PhoneNumber = userDto.PhoneNumber;
+            FirstName = user.FirstName;
+            LastName = user.LastName;
+            UserName = user.UserName;
+            Email = user.Email;
+            PhoneNumber = user.PhoneNumber;
         }
     }
 }

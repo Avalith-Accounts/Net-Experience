@@ -17,39 +17,45 @@ namespace Net.Experience.Application.Services
             _itemRepository = itemRepository;
             _itemQuery = itemQuery;
         }
-     
-        public async Task<ItemDto> SaveItemAsync(ItemDto itemDto)
+
+        #region SAVE
+        public async Task<Item> SaveItemAsync(ItemDto itemDto)
         {
             var item = await _itemRepository.Add(itemDto.ToItemEntity());
-           
-            itemDto.Id = item.Id;
 
-            return itemDto;
+            return item;
         }
-        public async Task<ItemDto> GetItemAsync(Guid itemId)
+        #endregion
+
+        #region GET
+        public async Task<Item> GetItemAsync(Guid itemId)
         {
-            ItemDto itemDto = null;
             var item = await _itemQuery.GetById(itemId);
 
-            if(item != null) 
-            {
-                itemDto = new ItemDto(item.Id, item.Title, item.Despription);
-            }
+            return item;
+        } 
+        #endregion
 
-            return itemDto;
-        }
-
-        public async Task<ItemDto> UpdateItemAsync(ItemDto itemDto)
+        #region UPDATE
+        public async Task<Item> UpdateItemAsync(Item item)
         {
-            Item item = new Item();
-
-            item.Id = itemDto.Id;
-            item.Title = itemDto.Title;
-            item.Despription = item.Despription;
 
             await _itemRepository.Update(item);
-            
-            return itemDto;
+
+            return item;
         }
+        #endregion
+
+        #region PROCESS UPDATE
+        public async Task<Item> ProcessUpdateItemAsync(Item item, ItemDto itemDto)
+        {
+            item.Description = itemDto.Description;
+            item.Title = item.Title;
+
+            await UpdateItemAsync(item);
+
+            return item;
+        } 
+        #endregion
     }
 }

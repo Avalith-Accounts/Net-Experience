@@ -20,19 +20,19 @@ namespace Net.Experience.Application.UseCases.Item.Update
         }
         public async Task<Response<UpdateItemResult>> Handle(UpdateItemRequest request, CancellationToken cancellationToken)
         {
-            await ValidateExistItemAsync(request);
+            var itemEntity = await _itemService.GetItemAsync(request.Id);
 
-            var item = await _itemService.UpdateItemAsync(_mapper.Map<ItemDto>(request));
+            ValidateExistItemAsync(itemEntity);
+
+            var item = await _itemService.ProcessUpdateItemAsync(itemEntity,_mapper.Map<ItemDto>(request));
 
             var itemResult = new UpdateItemResult(item);
 
             return new Response<UpdateItemResult>(itemResult);
         }
 
-        private async Task ValidateExistItemAsync(UpdateItemRequest request)
+        private void ValidateExistItemAsync(Domain.Entities.Item itemEntity)
         {
-            var itemEntity = await _itemService.GetItemAsync(request.Id);
-
             if (itemEntity is null)
             {
                 throw new NotFoundException(MessageGeneral.DontExist);

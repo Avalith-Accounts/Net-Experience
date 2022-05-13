@@ -6,6 +6,7 @@ using Net.Experience.Domain.Dtos;
 using Net.Experience.Domain.Interfaces.Services;
 using System.Threading;
 using System.Threading.Tasks;
+using E = Net.Experience.Domain.Entities;
 
 namespace Net.Experience.Application.UseCases.User.UpdateUser
 {
@@ -20,17 +21,17 @@ namespace Net.Experience.Application.UseCases.User.UpdateUser
         }
         public async Task<Response<UpdateUserResult>> Handle(UpdateUserRequest request, CancellationToken cancellationToken)
         {
-            await ValidateUserExistAsync(request);
+            var user = await _userService.GetUserAysnc(request.Id);
 
-            var userResponse = await _userService.UpdateUserAsync(_mapper.Map<UserDto>(request));
+            ValidateUserExistAsync(user);
+
+            var userResponse = await _userService.ProcessUpdateUserAsync(user,_mapper.Map<UserDto>(request));
             
             return new Response<UpdateUserResult>(new UpdateUserResult(userResponse));
         }
 
-        private async Task ValidateUserExistAsync(UpdateUserRequest request)
+        private void ValidateUserExistAsync(E.User user)
         {
-            var user = await _userService.GetUserAysnc(request.Id);
-
             if (user is null)
             {
                 throw new NotFoundException(MessageGeneral.NotFound, MessageGeneral.DontExist);

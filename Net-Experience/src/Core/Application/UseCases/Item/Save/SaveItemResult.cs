@@ -9,7 +9,7 @@ namespace Net.Experience.Application.UseCases.Item.Save
         public string Title { get; set; }
         public string Description { get; set; }
 
-        public SaveItemResult(ItemDto itemDto) 
+        public SaveItemResult(Domain.Entities.Item itemDto) 
         {
             Id = itemDto.Id;
             Title = itemDto.Title;

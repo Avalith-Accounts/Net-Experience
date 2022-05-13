@@ -6,10 +6,10 @@ namespace Net.Experience.Application.UseCases.User.DeleteUserById
     {
         public string UserName { get; set; }
         public string Email { get; set; }
-        public DeleteUserByIdResult(UserDto userDto)
+        public DeleteUserByIdResult(Domain.Entities.User user)
         {
-            this.UserName = userDto.UserName;
-            this.Email = userDto.Email;
+            this.UserName = user.UserName;
+            this.Email = user.Email;
         }
     }
 }

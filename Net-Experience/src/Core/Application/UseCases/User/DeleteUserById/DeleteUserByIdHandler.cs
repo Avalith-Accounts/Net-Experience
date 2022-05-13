@@ -16,23 +16,22 @@ namespace Net.Experience.Application.UseCases.User.DeleteUserById
         }
         public async Task<Response<DeleteUserByIdResult>> Handle(DeleteUserByIdRequest request, CancellationToken cancellationToken)
         {
-            Domain.Dtos.UserDto userDto = await ValidateUserExistAsync(request);
+            var user = await _userService.GetUserAysnc(request.UserId);
 
-            await _userService.DeleteUserAysnc(userDto);
+             ValidateUserExistAsync(user);
 
-            return new Response<DeleteUserByIdResult>(new DeleteUserByIdResult(userDto));
+            await _userService.DeleteUserAysnc(user);
+
+            return new Response<DeleteUserByIdResult>(new DeleteUserByIdResult(user));
         }
 
-        private async Task<Domain.Dtos.UserDto> ValidateUserExistAsync(DeleteUserByIdRequest request)
+        private  void ValidateUserExistAsync(Domain.Entities.User user)
         {
-            var userDto = await _userService.GetUserAysnc(request.UserId);
 
-            if (userDto == null)
+            if (user == null)
             {
                 throw new NotFoundException(MessageGeneral.NotFound, MessageGeneral.DontExist);
             }
-
-            return userDto;
         }
     }
 }
