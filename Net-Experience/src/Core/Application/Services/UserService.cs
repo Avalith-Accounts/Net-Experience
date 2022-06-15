@@ -72,7 +72,7 @@ namespace Net.Experience.Application.Services
 
             await UpdateUserAsync(user);
             return user;
-    }
+        }
         #endregion
     }
 }
