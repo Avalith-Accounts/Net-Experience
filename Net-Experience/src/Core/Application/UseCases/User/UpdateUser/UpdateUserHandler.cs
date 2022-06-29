@@ -21,6 +21,7 @@ namespace Net.Experience.Application.UseCases.User.UpdateUser
         }
         public async Task<Response<UpdateUserResult>> Handle(UpdateUserRequest request, CancellationToken cancellationToken)
         {
+            var number = 0;
             var user = await _userService.GetUserAysnc(request.Id);
 
             ValidateUserExistAsync(user);

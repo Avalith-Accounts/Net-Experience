@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using Microsoft.Extensions.Logging;
 using Net.Experience.Application.Exceptions;
 using Net.Experience.Common.Helpers;
 using Net.Experience.Domain.Dtos;
