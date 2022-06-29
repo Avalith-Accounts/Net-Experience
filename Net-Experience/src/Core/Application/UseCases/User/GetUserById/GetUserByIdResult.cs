@@ -12,14 +12,14 @@ namespace Net.Experience.Application.UseCases.User.GetUserById
         public string Password { get; set; }
         public string IdentificationDocument { get; set; }
 
-        public GetUserByIdResult(UserDto userDto) 
+        public GetUserByIdResult(Domain.Entities.User user) 
         {
-            this.FirstName = userDto.FirstName;
-            this.LastName = userDto.LastName;
-            this.UserName = userDto.UserName;
-            this.Email = userDto.Email;
-            this.PhoneNumber = userDto.PhoneNumber;
-            this.IdentificationDocument = userDto.IdentificationDocument;
+            this.FirstName = user.FirstName;
+            this.LastName = user.LastName;
+            this.UserName = user.UserName;
+            this.Email = user.Email;
+            this.PhoneNumber = user.PhoneNumber;
+            this.IdentificationDocument = user.IdentificationDocument;
         }
     }
 }

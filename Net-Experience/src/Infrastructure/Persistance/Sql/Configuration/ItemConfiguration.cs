@@ -11,7 +11,7 @@ namespace Net.Experience.Persistance.Sql.Configuration
             entityTypeBuilder.ToTable("Items");
             entityTypeBuilder.HasKey(e => e.Id);
             entityTypeBuilder.Property(e => e.Title);
-            entityTypeBuilder.Property(e => e.Despription)
+            entityTypeBuilder.Property(e => e.Description)
                              .HasMaxLength(50);
         }
     }

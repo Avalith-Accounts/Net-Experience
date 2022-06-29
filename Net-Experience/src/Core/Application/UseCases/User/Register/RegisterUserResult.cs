@@ -7,10 +7,10 @@ namespace Net.Experience.Application.UseCases.User.Register
         public string UserName { get; set; }
         public string Email { get; set; }
 
-        public RegisterUserResult(UserDto userDto)
+        public RegisterUserResult(string userName,string email)
         {
-            UserName = userDto.UserName;
-            Email = userDto.Email;
+            UserName = userName;
+            Email = email;
         }
     }
 }

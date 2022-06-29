@@ -29,53 +29,50 @@ namespace Net.Experience.Application.Services
             _userQuery = userQuery;
             _userRepository = userRepository;
         }
-        #region Get by id
-        public async Task<UserDto> GetUserAysnc(Guid userId)
+        #region GET
+        public async Task<User> GetUserAysnc(Guid userId)
         {
-            UserDto userDto = null;
             var user = await _userQuery.GetById(userId.ToString());
 
-            if (user != null)
-            {
-                userDto = new UserDto(user);
-            }
-
-            return userDto;
+            return user;
         } 
         #endregion
 
-        #region Register
+        #region REGISTER
         public async Task<IdentityResult> RegisterUserAsync(UserDto userDto)
         {
             return await _userManager.CreateAsync(userDto.ToUser(), userDto.Password);
         } 
         #endregion
 
-        #region Delete
-        public async Task DeleteUserAysnc(UserDto userDto)
+        #region DELETE
+        public async Task DeleteUserAysnc(User user)
         {
-            var user = await _userQuery.GetById(userDto.Id.ToString());
             await _userRepository.Remove(user);
         } 
         #endregion
 
-        #region Update 
-        public async Task<UserDto> UpdateUserAsync(UserDto userDto)
+        #region UPDATE 
+        public async Task<User> UpdateUserAsync(User user)
         {
-            var user = await _userQuery.GetById(userDto.Id.ToString());
-
-            user.Id = userDto.Id;
-            user.Email = userDto.Email;
-            user.LastName = userDto.LastName;
-            user.FirstName = userDto.FirstName;
-            user.PasswordHash = userDto.Password;
-            user.PhoneNumber = userDto.PhoneNumber;
-            user.UserName = userDto.UserName;
-
             await _userRepository.Update(user);
 
-            return userDto;
-        } 
+            return user;
+        }
+
+        public async Task<User> ProcessUpdateUserAsync(User user, UserDto userDto)
+        {
+            user.FirstName = userDto.FirstName;
+            user.LastName = userDto.LastName;
+            user.UserName = userDto.UserName;
+            user.Email = userDto.Email;
+            user.PhoneNumber = userDto.PhoneNumber;
+            user.PasswordHash = userDto.Password;
+            user.IdentificationDocument = userDto.IdentificationDocument;
+
+            await UpdateUserAsync(user);
+            return user;
+        }
         #endregion
     }
 }

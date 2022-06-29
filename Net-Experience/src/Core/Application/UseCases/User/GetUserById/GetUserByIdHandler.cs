@@ -17,14 +17,14 @@ namespace Net.Experience.Application.UseCases.User.GetUserById
         }
         public async Task<Response<GetUserByIdResult>> Handle(GetUserByIdRequest request, CancellationToken cancellationToken)
         {
-           var userDto =  await _userService.GetUserAysnc(request.UserId);
+           var user =  await _userService.GetUserAysnc(request.UserId);
 
-            if(userDto == null) 
+            if(user == null) 
             {
                 throw new NotFoundException(MessageGeneral.NotFound, MessageGeneral.DontExist);
             }
 
-            return new Response<GetUserByIdResult>(new GetUserByIdResult(userDto));
+            return new Response<GetUserByIdResult>(new GetUserByIdResult(user));
         }
     }
 }

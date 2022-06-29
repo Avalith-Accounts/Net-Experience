@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,6 +19,7 @@ namespace Net.Experience.Configuration
             services.AddServiceConfiguration();
             services.AddMediatorConfiguration();
             services.AddSwaggerConfiguration();
+            services.AddMapper();
 
             return services;
         }
